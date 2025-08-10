@@ -15,11 +15,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       
+    - name: Debug - List files
+      run: ls -la
+      
     - name: Setup Go
       uses: actions/setup-go@v4
       with:
         go-version: '1.21'
-        cache: false  # 禁用缓存，避免 go.sum 文件缺失的问题
+        cache: false
+        
+    - name: Debug - Check Go files
+      run: |
+        ls -la
+        cat main.go
         
     - name: Run Hello World script
       run: go run main.go
