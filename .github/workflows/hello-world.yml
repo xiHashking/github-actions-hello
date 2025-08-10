@@ -1,0 +1,27 @@
+name: Hello World Go Script
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # 每5分钟运行一次
+  workflow_dispatch:      # 允许手动触发
+  push:                   # 代码推送时也运行一次（用于测试）
+    branches: [ main, master ]
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+        
+    - name: Run Hello World script
+      run: go run main.go
+      
+    - name: Show current time
+      run: echo "脚本执行完成时间：$(date)"
