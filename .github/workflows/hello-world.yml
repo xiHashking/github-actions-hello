@@ -19,6 +19,7 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '1.21'
+        cache: false  # 禁用缓存，避免 go.sum 文件缺失的问题
         
     - name: Run Hello World script
       run: go run main.go
